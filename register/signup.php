@@ -40,10 +40,10 @@ if (!empty($_POST)) {
     //
     //input type="file"
 　  //input type="file"で送られるられるもの
-　  //$_FILES
+　  //$_FILESきに
 　  //  1. formタグにenctype="multipart/form-data"
 　  //  2. formタグにmethod="POST"
-　  //$_FILES
+　  //$_FILESのに
 　  //  $_FILES[キー]['name'] ファイル名
 　  //  $_FILES[キー]['tmp_name'] データそのもの
 
