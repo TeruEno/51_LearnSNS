@@ -37,24 +37,21 @@ if (!empty($_POST)) {
         //4文字未満、または、17文字以上
         $errors['password'] = 'length';
     }
-    //
     //input type="file"
-　  //input type="file"で送られるられるもの
-　  //$_FILESきに
-　  //  1. formタグにenctype="multipart/form-data"
-　  //  2. formタグにmethod="POST"
-　  //$_FILESのに
-　  //  $_FILES[キー]['name'] ファイル名
-　  //  $_FILES[キー]['tmp_name'] データそのもの
-
-     if ($title_name != '') {
-         //画像が選択されているとき
-     } else {
+    //input type="file"で送られるられるもの
+    //$_FILESきに
+    //  1. formタグにenctype="multipart/form-data"
+    //  2. formタグにmethod="POST"
+    //$_FILESのに
+    //  $_FILES[キー]['name'] ファイル名
+    //  $_FILES[キー]['tmp_name'] データそのもの
+    if ($title_name != '') {
+        //画像が選択されているとき
+    } else {
         //画像が未選択のとき
         $errors['img_name'] = 'blank';
-     }
+    }
 }
-
 
 ?>
 <!DOCTYPE html>
