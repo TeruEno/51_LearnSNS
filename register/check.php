@@ -1,5 +1,18 @@
 <?php
-
+session_start();
+// 不正遷移制御
+// signup.phpから来ていない場合、signup.phpに強制遷移させる
+if (!isset($_SESSION['51_LearnSNS'])) {
+    header('Location: signup.php');
+    exit();
+}
+// echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
+$name = $_SESSION['51_LearnSNS']['name'];
+$email = $_SESSION['51_LearnSNS']['email'];
+$password = $_SESSION['51_LearnSNS']['password'];
+$img_name = $_SESSION['51_LearnSNS']['img_name'];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -16,22 +29,33 @@
                 <h2 class="text-center content_header">アカウント情報確認</h2>
                 <div class="row">
                     <div class="col-xs-4">
-                        <img src="../user_profile_img/misae.png" class="img-responsive img-thumbnail">
+                        <img src="../user_profile_img/<?php echo htmlspecialchars($img_name); ?>" class="img-responsive img-thumbnail">
                     </div>
                     <div class="col-xs-8">
                         <div>
                             <span>ユーザー名</span>
-                            <p class="lead">野原みさえ</p>
+                            <!--
+                                htmlspecialchars(文字列)
+                                XSS(クロスサイトスクリプティング)対策
+                                悪意のあるプログラムが書き込まれたとしても、単純な文字列として扱い、サービスを攻撃から守る
+                            -->
+                            <p class="lead"><?php echo htmlspecialchars($name); ?></p>
                         </div>
                         <div>
                             <span>メールアドレス</span>
-                            <p class="lead">misae@nohara.com</p>
+                            <p class="lead"><?php echo htmlspecialchars($email); ?></p>
                         </div>
                         <div>
                             <span>パスワード</span>
+                            <!-- パスワードはソーシャルハッキング対策で表示しない -->
                             <p class="lead">●●●●●●●●</p>
                         </div>
                         <form method="POST" action="thanks.php">
+                            <!--
+                                GET送信時のパラメータ送信
+                                URL?キー=値
+                                signup.phpに「戻る」で遷移したことがわかるようにパラメータを付与している
+                            -->
                             <a href="signup.php?action=rewrite" class="btn btn-default">&laquo;&nbsp;戻る</a> | 
                             <input type="hidden" name="action" value="submit">
                             <input type="submit" class="btn btn-primary" value="ユーザー登録">
