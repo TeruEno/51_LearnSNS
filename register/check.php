@@ -2,6 +2,7 @@
 session_start();
 //require(ファイル名);
 //指定されたファイルの中身がまるまる移植される
+// ../は一つ上のフォルダを参照する
 require '../dbconnect.php';
 
 // 不正遷移制御
